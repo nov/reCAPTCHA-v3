@@ -8,13 +8,34 @@
   <body>
     <h1>reCAPTCHA v3</h1>
     <p>
-      Token:
-      <code id="token_field"></code>
+      Token: <code id="token_field"></code>
+    </p>
+    <p>
+      Score: <code id="score_field"></code>
     </p>
     <script>
+      const evaluate = (token) => {
+        let body = new FormData();
+        body.append('secret', '6LffA1kUAAAAAIzF0JcdAYpCSJigGrcj2mYmEVzA');
+        body.append('response', token);
+        fetch('https://www.google.com/recaptcha/api/siteverify', {
+          method: 'POST',
+          body: body
+        }).then(response => {
+          return response.json();
+        }).then(json => {
+          console.info('json', json);
+          score_field.textContent = json.score;
+        });
+      };
+
       grecaptcha.ready(() => {
-        grecaptcha.execute('6LffA1kUAAAAAFGFxgwKfJpPdQDe8Q46fTnKc6lO', {action: 'calc'}).then((token) => {
+        grecaptcha.execute('6LffA1kUAAAAAFGFxgwKfJpPdQDe8Q46fTnKc6lO', {
+          action: 'calc'
+        }).then(token => {
+          console.info('token', token);
           token_field.textContent = token;
+          evaluate(token);
         });
       });
     </script>

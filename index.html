@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>reCAPTCHA v3</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LffA1kUAAAAAFGFxgwKfJpPdQDe8Q46fTnKc6lO"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LetCFkUAAAAABNLq4VBYukVPrpC0Og92UoKSqF2"></script>
   </head>
   <body>
     <h1>reCAPTCHA v3</h1>
@@ -16,7 +16,7 @@
     <script>
       const evaluate = (token) => {
         let body = new FormData();
-        body.append('secret', '6LffA1kUAAAAAIzF0JcdAYpCSJigGrcj2mYmEVzA');
+        body.append('secret', '6LetCFkUAAAAALFUB0ZLgTimtOy6A2YlTU3hcwC5');
         body.append('response', token);
         fetch('https://www.google.com/recaptcha/api/siteverify', {
           method: 'POST',
@@ -30,7 +30,7 @@
       };
 
       grecaptcha.ready(() => {
-        grecaptcha.execute('6LffA1kUAAAAAFGFxgwKfJpPdQDe8Q46fTnKc6lO', {
+        grecaptcha.execute('6LetCFkUAAAAABNLq4VBYukVPrpC0Og92UoKSqF2', {
           action: 'calc'
         }).then(token => {
           console.info('token', token);

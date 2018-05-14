@@ -10,32 +10,13 @@
     <p>
       Token: <code id="token_field"></code>
     </p>
-    <p>
-      Score: <code id="score_field"></code>
-    </p>
     <script>
-      const evaluate = (token) => {
-        let body = new FormData();
-        body.append('secret', '6LetCFkUAAAAALFUB0ZLgTimtOy6A2YlTU3hcwC5');
-        body.append('response', token);
-        fetch('https://www.google.com/recaptcha/api/siteverify', {
-          method: 'POST',
-          body: body
-        }).then(response => {
-          return response.json();
-        }).then(json => {
-          console.info('json', json);
-          score_field.textContent = json.score;
-        });
-      };
-
       grecaptcha.ready(() => {
         grecaptcha.execute('6LetCFkUAAAAABNLq4VBYukVPrpC0Og92UoKSqF2', {
           action: 'calc'
         }).then(token => {
           console.info('token', token);
           token_field.textContent = token;
-          evaluate(token);
         });
       });
     </script>
